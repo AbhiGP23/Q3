@@ -1,9 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-#Parameters
+#Parameters and constants
 T = 30
 dt = 0.1
+r=0.1
+l=25
 
 
 def simulate_variable_velocity():
@@ -17,9 +19,9 @@ def simulate_variable_velocity():
 
     for i in range(time_steps):
         traj[i, :] = [x, y, theta]
-        x = x + v * np.cos(theta) * dt #Updating X position
-        y = y + v * np.sin(theta) * dt #Updating Y position
-        theta = theta + omega * dt #Updating angle
+        x += v * np.cos(theta) * dt #Updating X position
+        y += v * np.sin(theta) * dt #Updating Y position
+        theta += omega * dt #Updating angle
         counter += 1
         v = 1 + 0.1*np.sin(counter*dt) #updating v at next time step
         omega = 0.2 + 0.5*np.cos(counter*dt) #updating omega at next time step
