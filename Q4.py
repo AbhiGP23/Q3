@@ -7,12 +7,14 @@ dt = 0.1
 r=0.1
 l=0.25
 
+#Declaring array to hold G
 G = np.array([
     [1 + (np.pi / 2), np.pi / 2, l],
     [1 + (7 * np.pi / 6), 7 * np.pi / 6, (-0.5 * l)],
     [1 + (11 * np.pi / 6), 11 * np.pi / 6, l]
 ])
 
+#Calculate Velocites with given wheel speeds
 def calculate_velocites(u1,u2,u3):
     wheel_speed = np.array([
         [r*u1],
@@ -27,7 +29,7 @@ def calculate_velocites(u1,u2,u3):
 
     return x_dot, y_dot, theta_dot
 
-
+#Simulate robot using calculated velocites
 def simulate(u1, u2, u3):
     #Initial Variables
     time_steps = int(T / dt)

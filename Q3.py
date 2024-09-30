@@ -7,7 +7,7 @@ dt = 0.1
 r=0.1
 l=25
 
-
+#Simulate using velocity profiles
 def simulate_variable_velocity():
     #Initial Variables
     time_steps = int(T / dt)
@@ -27,7 +27,7 @@ def simulate_variable_velocity():
         omega = 0.2 + 0.5*np.cos(counter*dt) #updating omega at next time step
         
     return traj
-
+#Simulate using constant velocity
 def simulate_constant_velocity(v, omega, T, dt):
     #Initial Variables
     time_steps = int(T / dt)
@@ -48,6 +48,22 @@ def plot_trajectory(traj, title):
     plt.ylabel("Y position [m]")
     plt.title(f"{title}: X and Y positions")
     plt.axis("equal")
+    plt.grid(True)
+    plt.show()
+
+    plt.figure()
+    plt.plot(np.arange(traj.shape[0]) * 0.1, traj[:, 0]) #Plotting X vs overall time
+    plt.xlabel("Time [s]")
+    plt.ylabel("X position [m]")
+    plt.title(f"{title}: X over Time")
+    plt.grid(True)
+    plt.show()
+
+    plt.figure()
+    plt.plot(np.arange(traj.shape[0]) * 0.1, traj[:, 1]) #Plotting Y vs overall time
+    plt.xlabel("Time [s]")
+    plt.ylabel("Y position [m]")
+    plt.title(f"{title}: Y over Time")
     plt.grid(True)
     plt.show()
     
