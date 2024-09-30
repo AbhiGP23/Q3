@@ -14,6 +14,56 @@ G = np.array([
     [1 + (11 * np.pi / 6), 11 * np.pi / 6, l]
 ])
 
+#Calculate u1,u2,u3 for given case
+def calculate_wheel_speed(case):
+    if case == 2: # Case 2: St. Line w 60 degree slope 
+        r = 0.1
+        l = 0.25
+        x_dot = 0.2 * np.sqrt(3)
+        y_dot = 0.2
+        theta_dot = 0
+
+        G = np.array([
+            [1 + (np.pi / 2), np.pi / 2, l],
+            [1 + (7 * np.pi / 6), 7 * np.pi / 6, (-0.5 * l)],
+            [1 + (11 * np.pi / 6), 11 * np.pi / 6, l]
+        ])
+
+        speed = np.array([
+            [x_dot],
+            [y_dot],
+            [theta_dot]
+        ])
+
+        wheel_speeds = np.dot((1 / r) * G, speed)
+
+        print(wheel_speeds)
+    
+    elif case == 3:  # Case 3: Circle of diameter 2m
+        r = 0.1
+        l = 0.25
+        x_dot = 0.3
+        y_dot = 0
+        theta_dot = 0.3
+
+        G = np.array([
+            [1 + (np.pi / 2), np.pi / 2, l],
+            [1 + (7 * np.pi / 6), 7 * np.pi / 6, (-0.5 * l)],
+            [1 + (11 * np.pi / 6), 11 * np.pi / 6, l]
+        ])
+
+        speed = np.array([
+            [x_dot],
+            [y_dot],
+            [theta_dot]
+        ])
+
+        wheel_speeds = np.dot((1 / r) * G, speed)
+
+        print(wheel_speeds) 
+    
+    return wheel_speeds.flatten()
+
 #Calculate Velocites with given wheel speeds
 def calculate_velocites(u1,u2,u3):
     wheel_speed = np.array([
@@ -87,9 +137,11 @@ traj1 = simulate(u1=-2, u2=1, u3=1)
 plot_trajectory(traj1, title="(u1=-2, u2=1, u3=1)")
 
 #Case 2: u1, u2, u3 such that robot moves in straight line with 60 degree slope
-traj2 = simulate(u1=12.05, u2=23.49, u3=34.94)
+u1,u2,u3 = calculate_wheel_speed(2)
+traj2 = simulate(u1, u2, u3)
 plot_trajectory(traj2, title="Straight line with 60 degree slope")
 
 #Case 3: u1, u2, u3 such that robot moves in circle of diameter 2m
-traj2 = simulate(u1=8.46, u2=13.62, u3=21.03)
+u1,u2,u3 = calculate_wheel_speed(3)
+traj2 = simulate(u1, u2, u3)
 plot_trajectory(traj2, title="Circle of diameter 2m")

@@ -1,11 +1,8 @@
 import sympy as sym
 import numpy as np
 
-
-
-
 def calculate_wheel_speed(case):
-    if case == 1: # Case 1: St. Line w 60 degree slope 
+    if case == 2: # Case 2: St. Line w 60 degree slope 
         r = 0.1
         l = 0.25
         x_dot = 0.2 * np.sqrt(3)
@@ -28,7 +25,7 @@ def calculate_wheel_speed(case):
 
         print(wheel_speeds)
     
-    elif case == 2:  # Case 2: Circle of diameter 2m
+    elif case == 2:  # Case 3: Circle of diameter 2m
         r = 0.1
         l = 0.25
         x_dot = 0.3
@@ -52,6 +49,6 @@ def calculate_wheel_speed(case):
         print(wheel_speeds) 
         
 
-    return
+    return 
 
 calculate_wheel_speed(1)
